@@ -8,12 +8,17 @@
 
 <body>
     <div ng-controller="myController">
-        10 + 20 = {{ 10 + 20 }}
-        <br/>
-        {{ message }}
-    </div>
-    <div>
-        {{ {name: 'David', age: 500}.name }}
+        <!--10 + 20 = {{ 10 + 20 }}-->
+        <div>
+            Name: {{ employee.name }}
+        </div>
+        <div>
+            Age: {{ employee.age }}
+        </div>
+        <div>
+            Gender: {{ employee.gender }}
+        </div>
+
     </div>
 </body>
 </html>
