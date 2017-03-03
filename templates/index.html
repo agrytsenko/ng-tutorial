@@ -9,7 +9,9 @@
 
 <body>
     <div ng-controller="myController">
-        Search: <input type="text" placeholder="Search employee" ng-model="searchText.city"/>
+        <input type="text" ng-model="searchText.name" placeholder="Search name"/>
+        <input type="text" ng-model="searchText.city" placeholder="Search city"/>
+        <input type="checkbox" ng-model="exactMatch"/> Exact Match
         <br/><br/>
         <table>
             <thead>
@@ -21,7 +23,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="employee in employees | filter:searchText">
+            <tr ng-repeat="employee in employees | filter:searchText:exactMatch">
                 <td>{{ employee.name }}</td>
                 <td>{{ employee.gender | lowercase }}</td>
                 <td>{{ employee.salary | currency:"$":2 }}</td>
