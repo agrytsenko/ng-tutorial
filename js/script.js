@@ -3,6 +3,7 @@
 angular
     .module("myModule", [])
     .controller("myController", function($scope) {
+
         var employees = [
             {name: 'Ben', dateOfBirth: new Date('October 6, 1984'), gender: 'Male', salary: 500.125},
             {name: 'Alex', dateOfBirth: new Date('November 16, 1980'), gender: 'Male', salary: 123123.23423},
@@ -16,5 +17,5 @@ angular
         ];
 
         $scope.employees = employees;
-        $scope.rowLimit = 3;
+        $scope.columnOrder = 'name';
 });

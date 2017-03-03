@@ -9,8 +9,17 @@
 
 <body>
     <div ng-controller="myController">
-        Number of rows: <input type="number" step="1" min="0" max="5" ng-model="rowLimit" />
-        <br/><br/>
+        Order by:
+        <select ng-model="columnOrder">
+            <option value="name">Name</option>
+            <option value="-name">Name DESC</option>
+            <option value="gender">Gender</option>
+            <option value="dateOfBirth">Date of Birth</option>
+            <option value="salary">Salary</option>
+            <option value="-salary">Salary DESC</option>
+        </select>
+        <br/>
+        <br/>
         <table>
             <thead>
             <tr>
@@ -22,7 +31,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="employee in employees | limitTo:rowLimit">
+            <tr ng-repeat="employee in employees | orderBy:columnOrder">
                 <td>{{ employee.name | uppercase }}</td>
                 <td>{{ employee.dateOfBirth | date:"dd/MM/yyyy" }}</td>
                 <td>{{ employee.gender | lowercase }}</td>
