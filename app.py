@@ -18,7 +18,6 @@ def index():
 shared_files = {
     '/js': os.path.join(os.path.dirname(__file__), 'js'),
     '/': os.path.join(os.path.dirname(__file__), 'templates')
-
 }
 
 if __name__ == '__main__':
