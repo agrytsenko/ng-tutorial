@@ -9,24 +9,25 @@
 
 <body>
     <div ng-controller="myController">
+        Number of rows: <input type="number" step="1" min="0" max="5" ng-model="rowLimit" />
+        <br/><br/>
         <table>
             <thead>
             <tr>
                 <th>Name</th>
-                <th>Likes</th>
-                <th>Dislikes</th>
-                <th>Like/Dislike</th>
+                <th>Date of Birth</th>
+                <th>Gender</th>
+                <th>Salary (number)</th>
+                <th>Salary (currency)</th>
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="technology in technologies">
-                <td>{{ technology.name }}</td>
-                <td>{{ technology.likes }}</td>
-                <td>{{ technology.dislikes }}</td>
-                <td>
-                    <input type="button" value="Like" ng-click="likeTechnology(technology)"/>
-                    <input type="button" value="Dislike" ng-click="dislikeTechnology(technology)"/>
-                </td>
+            <tr ng-repeat="employee in employees | limitTo:rowLimit">
+                <td>{{ employee.name | uppercase }}</td>
+                <td>{{ employee.dateOfBirth | date:"dd/MM/yyyy" }}</td>
+                <td>{{ employee.gender | lowercase }}</td>
+                <td>{{ employee.salary | number:2 }}</td>
+                <td>{{ employee.salary | currency:"$":1 }}</td>
             </tr>
             </tbody>
         </table>
