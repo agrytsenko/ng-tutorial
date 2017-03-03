@@ -17,7 +17,8 @@ def index():
 
 shared_files = {
     '/js': os.path.join(os.path.dirname(__file__), 'js'),
-    '/': os.path.join(os.path.dirname(__file__), 'templates')
+    '/': os.path.join(os.path.dirname(__file__), 'templates'),
+    '/styles.css': os.path.join(os.path.dirname(__file__), 'styles.css')
 }
 
 if __name__ == '__main__':
