@@ -9,29 +9,23 @@
 
 <body>
     <div ng-controller="myController">
+        Search: <input type="text" placeholder="Search employee" ng-model="searchText.city"/>
+        <br/><br/>
         <table>
             <thead>
             <tr>
-                <th ng-click="sortData('name')">
-                    Name<div ng-class="getSortClass('name')"></div>
-                </th>
-                <th ng-click="sortData('dateOfBirth')">
-                    Date of Birth <div ng-class="getSortClass('dateOfBirth')"></div>
-                </th>
-                <th ng-click="sortData('gender')">
-                    Gender <div ng-class="getSortClass('gender')"></div>
-                </th>
-                <th ng-click="sortData('salary')">
-                    Salary (currency) <div ng-class="getSortClass('salary')"></div>
-                </th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Salary</th>
+                <th>City</th>
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="employee in employees | orderBy:sortColumn:reverseSort">
-                <td>{{ employee.name | uppercase }}</td>
-                <td>{{ employee.dateOfBirth | date:"dd/MM/yyyy" }}</td>
+            <tr ng-repeat="employee in employees | filter:searchText">
+                <td>{{ employee.name }}</td>
                 <td>{{ employee.gender | lowercase }}</td>
                 <td>{{ employee.salary | currency:"$":2 }}</td>
+                <td>{{ employee.city }}</td>
             </tr>
             </tbody>
         </table>

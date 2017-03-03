@@ -8,8 +8,6 @@ tr, td {
     border: 1px solid black;
 }
 
-th {cursor: pointer}
-
 td {text-align: left}
 
 .arrow-up {
