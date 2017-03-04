@@ -29,6 +29,17 @@ angular
             if ($scope.sortColumn == column) {
                 return $scope.reverseSort ? 'arrow-down' : 'arrow-up'
             }
-            return ''
+            return '';
         };
+
+        $scope.search = function(item) {
+            if ($scope.searchText == undefined) {
+                return true;
+            }
+            var l = $scope.searchText.toLowerCase();
+            if (item.name.toLowerCase().indexOf(l) != -1 || item.city.toLowerCase().indexOf(l) != -1) {
+                return true;
+            }
+            return false;
+        }
 });
