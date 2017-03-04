@@ -10,27 +10,17 @@
 
 <body>
     <div ng-controller="myController">
-        <input type="checkbox" ng-model="hideSalary" /> Hide salary
-        <br/><br/>
-        <table>
-            <thead>
-            <tr>
-                <th>Name</th>
-                <th>Gender</th>
-                <th>City</th>
-                <th>Salary</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="employee in employees">
-                <td>{{ employee.name }}</td>
-                <td>{{ employee.gender }}</td>
-                <td>{{ employee.city }}</td>
-                <td ng-hide="hideSalary">{{ employee.salary | currency:"$":2 }}</td>
-                <td ng-show="hideSalary"> #### </td>
-            </tr>
-            </tbody>
-        </table>
+        <br/>
+        <ul>
+            <li ng-repeat="country in countries" ng-init="parentIndex = $index">
+                {{ country.name }}
+                <ul>
+                    <li ng-repeat="city in country.cities">
+                        {{ city.name }} - Index = [{{ parentIndex }},{{ $index }}]
+                    </li>
+                </ul>
+            </li>
+        </ul>
     </div>
 </body>
 </html>
