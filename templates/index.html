@@ -10,17 +10,13 @@
 
 <body>
     <div ng-controller="myController">
-        <br/>
-        <ul>
-            <li ng-repeat="country in countries" ng-init="parentIndex = $index">
-                {{ country.name }}
-                <ul>
-                    <li ng-repeat="city in country.cities">
-                        {{ city.name }} - Index = [{{ parentIndex }},{{ $index }}]
-                    </li>
-                </ul>
-            </li>
-        </ul>
+        Select view:
+        <select ng-model="employeeView">
+            <option value="employeeTable.html">Table</option>
+            <option value="employeeList.html">List</option>
+        </select>
+        <br/><br/>
+        <div ng-include="employeeView"></div>
     </div>
 </body>
 </html>
