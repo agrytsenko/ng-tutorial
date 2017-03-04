@@ -3,10 +3,10 @@ from __future__ import unicode_literals
 import os
 
 from flask import Flask
-from flask import request, send_from_directory
+from flask import send_from_directory
 
 
-app = Flask(__name__, static_url_path='')
+app = Flask(__name__)
 route = app.route
 
 
