@@ -15,7 +15,7 @@ def get_db():
     return db
 
 
-def init():
+def create_employees():
     with sqlite3.connect(DATABASE) as cursor:
         cursor.execute("drop table if exists employees")
         cursor.execute(
@@ -32,5 +32,38 @@ def init():
         cursor.execute("Insert into employees (name, gender, salary) values ('Todd', 'Male', 80000)")
 
 
+def create_countries():
+    with sqlite3.connect(DATABASE) as cursor:
+        cursor.execute("drop table if exists country")
+    with sqlite3.connect(DATABASE) as cursor:
+        cursor.execute("Create Table country (id integer primary key autoincrement, name nvarchar(50))")
+        cursor.execute("Insert into country (id, name) values (0, 'India')")
+        cursor.execute("Insert into country (id, name) values (1, 'USA')")
+        cursor.execute("Insert into country (id, name) values (2, 'UK')")
+
+
+def create_cities():
+    with sqlite3.connect(DATABASE) as cursor:
+        cursor.execute("drop table if exists city")
+    with sqlite3.connect(DATABASE) as cursor:
+        cursor.execute(
+            "Create Table city ("
+                "id integer primary key autoincrement, "
+                "name nvarchar(50), "
+                "country_id integer,"
+                "foreign key (country_id) references country(id)"
+            ")")
+        cc = (
+            'Mumbai', 'Delhi', 'Bangalore', 'Chennai', 'Hyderabad',
+            'New York', 'Los Angeles', 'Chicago', 'Houston', 'Philadelphia',
+            'London', 'Birmingham', 'Coventry', 'Liverpool', 'Manchester',
+        )
+        q = "Insert into city (id, name, country_id) values (?, ?, ?)"
+        for i, city in enumerate(cc):
+            cursor.execute(q, (i, city, i/5))
+
+
 if __name__ == '__main__':
-    init()
+    create_employees()
+    create_countries()
+    create_cities()

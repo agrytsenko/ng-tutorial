@@ -2,10 +2,14 @@
 
 var app = angular
     .module("demoApp", [])
-    .controller("myController", function($scope, $location, $anchorScroll) {
-        $scope.scrollTo = function (scrollLocation) {
-            $location.hash(scrollLocation);
-            $anchorScroll.yOffset = 50;
+    .controller("myController", function($scope, $http, $location, $anchorScroll) {
+        $http.get('country/')
+             .then(function (response) {
+                 $scope.countries = response.data;
+             });
+
+        $scope.scrollTo = function (countryName) {
+            $location.hash(countryName);
             $anchorScroll();
         };
 });

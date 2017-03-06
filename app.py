@@ -23,6 +23,19 @@ def employees():
     res = map(dict, ee)
     return jsonify(res)
 
+
+@route('/country/')
+def country():
+    db = get_db()
+    countries = db.execute("select * from country").fetchall()
+    countries = map(dict, countries)
+    for c in countries:
+        q = "select * from city where country_id = ?"
+        tt = db.execute(q, str(c['id']))
+        c['cities'] = map(dict, tt)
+    return jsonify(countries)
+
+
 shared_files = {
     '/js': os.path.join(os.path.dirname(__file__), 'js'),
     '/': os.path.join(os.path.dirname(__file__), 'templates'),

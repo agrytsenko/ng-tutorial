@@ -11,78 +11,16 @@
 
 <body>
     <div ng-controller="myController">
-        <button id="top" ng-click="scrollTo('bottom')">Go to bottom of a page</button>
-        <br />
-        <div style="width: 400px; padding: 10px; border: 1px solid #909090">
-
-            <h2 id="common-pitfalls" class="ng-scope">Common Pitfalls</h2>
-            <p class="ng-scope">The AngularJS support channel (#angularjs on Freenode) sees a number of recurring pitfalls that new users of AngularJS fall into.
-            This document aims to point them out before you discover them the hard way.</p>
-            <h3 id="dom-manipulation" class="ng-scope">DOM Manipulation</h3>
-            <p class="ng-scope">Stop trying to use jQuery to modify the DOM in controllers. Really.
-            That includes adding elements, removing elements, retrieving their contents, showing and hiding them.
-            Use built-in directives, or write your own where necessary, to do your DOM manipulation.
-            See below about duplicating functionality.</p>
-            <p class="ng-scope">If you're struggling to break the habit, consider removing jQuery from your app.
-            Really. AngularJS has the $http service and powerful directives that make it almost always unnecessary.
-            AngularJS's bundled jQLite has a handful of the features most commonly used in writing AngularJS directives, especially binding to events.</p>
-            <h3 id="trying-to-duplicate-functionality-that-already-exists" class="ng-scope">Trying to duplicate functionality that already exists</h3>
-            <p class="ng-scope">There's a good chance that your app isn't the first to require certain functionality.
-            There are a few pieces of AngularJS that are particularly likely to be reimplemented out of old habits.</p>
-            <p class="ng-scope"><strong>ng-repeat</strong></p>
-            <p class="ng-scope"><code><span class="pln">ng</span><span class="pun">-</span><span class="pln">repeat</span></code> gets this a lot.
-            People try to use jQuery (see above) to add more elements to some container as they're fetched from the server.
-            No, bad dog.
-            This is what <code><span class="pln">ng</span><span class="pun">-</span><span class="pln">repeat</span></code> is for, and it does its job very well.
-            Store the data from the server in an array on your <code><span class="pln">$scope</span></code>, and bind it to the DOM with <code><span class="pln">ng</span><span class="pun">-</span><span class="pln">repeat</span></code>.</p>
-            <p class="ng-scope"><strong>ng-show</strong></p>
-            <p class="ng-scope"><code><span class="pln">ng</span><span class="pun">-</span><span class="pln">show</span></code> gets this frequently too.
-            Conditionally showing and hiding things using jQuery is a common pattern in other apps, but AngularJS has a better way.
-            <code><span class="pln">ng</span><span class="pun">-</span><span class="pln">show</span></code> (and <code><span class="pln">ng</span><span class="pun">-</span><span class="pln">hide</span></code>) conditionally show and hide elements based on boolean expressions.
-            Describe the conditions for showing and hiding an element in terms of <code><span class="pln">$scope</span></code> variables:</p>
-            <p class="ng-scope">Note also the counterpart <code><span class="pln">ng</span><span class="pun">-</span><span class="pln">hide</span></code> and similar <code><span class="pln">ng</span><span class="pun">-</span><span class="pln">disabled</span></code>.
-            Note especially the powerful <code><span class="pln">ng</span><span class="pun">-</span><span class="kwd">switch</span></code> that should be used instead of several mutually exclusive <code><span class="pln">ng</span><span class="pun">-</span><span class="pln">show</span></code>s.</p>
-            <p class="ng-scope"><strong>ng-class</strong></p>
-            <p class="ng-scope"><code><span class="pln">ng</span><span class="pun">-</span><span class="kwd">class</span></code> is the last of the big three.
-            Conditionally applying classes to elements is another thing commonly done manually using jQuery.
-            AngularJS, of course, has a better way.
-            You can give <code><span class="pln">ng</span><span class="pun">-</span><span class="kwd">class</span></code> a whitespace-separated set of class names, and then it's identical to ordinary <code><span class="kwd">class</span></code>.
-            That's not very exciting, so there's a second syntax:</p>
-            <p class="ng-scope">Where you give <code><span class="pln">ng</span><span class="pun">-</span><span class="kwd">class</span></code> an object, whose keys are CSS class names and whose values are conditional expressions using <code><span class="pln">$scope</span></code> variables.
-            The element will then have all the classes whose conditions are truthy, and none of those whose conditions are falsy.</p>
-            <p class="ng-scope">Note also the handy <code><span class="pln">ng</span><span class="pun">-</span><span class="kwd">class</span><span class="pun">-</span><span class="pln">even</span></code> and <code><span class="pln">ng</span><span class="pun">-</span><span class="kwd">class</span><span class="pun">-</span><span class="pln">odd</span></code>, and the related though somewhat different <code><span class="pln">ng</span><span class="pun">-</span><span class="pln">style</span></code>.</p>
-            <h3 id="-watch-and-apply-" class="ng-scope"><code><span class="pln">$watch</span></code> and <code><span class="pln">$apply</span></code></h3>
-            <p class="ng-scope">AngularJS's two-way data binding is the root of all awesome in AngularJS.
-            However, it's not magic, and there are some situations where you need to give it a nudge in the right direction.</p>
-            <p class="ng-scope">When you bind a value to an element in AngularJS using <code><span class="pln">ng</span><span class="pun">-</span><span class="pln">model</span></code>, <code><span class="pln">ng</span><span class="pun">-</span><span class="pln">repeat</span></code>, etc., AngularJS creates a <code><span class="pln">$watch</span></code> on that value.
-            Then whenever a value on a scope changes, all <code><span class="pln">$watch</span></code>es observing that element are executed, and everything updates.</p>
-            <p class="ng-scope">Sometimes, usually when you're writing a custom directive, you will have to define your own <code><span class="pln">$watch</span></code> on a scope value to make the directive react to changes.</p>
-            <p class="ng-scope">On the flip side, sometimes you change a scope value in some code, but the app doesn't react to it.
-            AngularJS checks for scope variable changes after pieces of your code have finished running; for example, when <code><span class="pln">ng</span><span class="pun">-</span><span class="pln">click</span></code> calls a function on your scope, AngularJS will check for changes and react.
-            However, some code is outside of AngularJS and you'll have to call <code><span class="pln">scope</span><span class="pun">.</span><span class="pln">$apply</span><span class="pun">()</span></code> yourself to trigger the update.
-            This is most commonly seen in event handlers in custom directives.</p>
-            <h3 id="combining-ng-repeat-with-other-directives" class="ng-scope">Combining <code><span class="pln">ng</span><span class="pun">-</span><span class="pln">repeat</span></code> with other directives</h3>
-            <p class="ng-scope"><code><span class="pln">ng</span><span class="pun">-</span><span class="pln">repeat</span></code> is extremely useful, one of the most powerful directives in AngularJS.
-            However the transformation it applies to the DOM is substantial.
-            Therefore applying other directives (such as <code><span class="pln">ng</span><span class="pun">-</span><span class="pln">show</span></code>, <code><span class="pln">ng</span><span class="pun">-</span><span class="pln">controller</span></code> and others) to the same element as <code><span class="pln">ng</span><span class="pun">-</span><span class="pln">repeat</span></code> generally leads to problems.</p>
-            <p class="ng-scope">If you want to apply a directive to the whole repeat, wrap the repeat in a parent element and put it there.
-            If you want to apply a directive to each inner piece of the repeat, put it on a child of the element with <code><span class="pln">ng</span><span class="pun">-</span><span class="pln">repeat</span></code>.</p>
-            <h3 id="-rootscope-exists-but-it-can-be-used-for-evil" class="ng-scope"><code><span class="pln">$rootScope</span></code> exists, but it can be used for evil</h3>
-            <p class="ng-scope">Scopes in AngularJS form a hierarchy, prototypically inheriting from a root scope at the top of the tree.
-            Usually this can be ignored, since most views have a controller, and therefore a scope, of their own.</p>
-            <p class="ng-scope">Occasionally there are pieces of data that you want to make global to the whole app.
-            For these, you can inject <code><span class="pln">$rootScope</span></code> and set values on it like any other scope.
-            Since the scopes inherit from the root scope, these values will be available to the expressions attached to directives like <code><span class="pln">ng</span><span class="pun">-</span><span class="pln">show</span></code> just like values on your local <code><span class="pln">$scope</span></code>.</p>
-            <p class="ng-scope">Of course, global state sucks and you should use <code><span class="pln">$rootScope</span></code> sparingly, like you would (hopefully) use with global variables in any language.
-            In particular, don't use it for code, only data.
-            If you're tempted to put a function on <code><span class="pln">$rootScope</span></code>, it's almost always better to put it in a service that can be injected where it's needed, and more easily tested.</p>
-            <p class="ng-scope">Conversely, don't create a service whose only purpose in life is to store and return bits of data.</p>
-            </div>
-        <br />
-        <button id="bottom" ng-click="scrollTo('top')">Go to top of a page</button>
-        <br />
-        <br />
-
+        <span ng-repeat="country in countries">
+            <button ng-click="scrollTo(country.name)">{{ country.name }}</button>
+        </span>
+        <br /><br />
+        <fieldset ng-repeat="country in countries" id="{{ country.name }}">
+            <legend>{{ country.name }}</legend>
+            <ul>
+                <li ng-repeat="city in country.cities">{{ city.name }}</li>
+            </ul>
+        </fieldset>
     </div>
 </body>
 </html>
