@@ -18,6 +18,9 @@ var app = angular
                 templateUrl: '/templates/students.html',
                 controller: 'studentsController'
             })
+            .otherwise({
+                redirectTo: '/home'
+            })
     })
     .controller('homeController', function ($scope) {
         $scope.message = 'Home Page';
