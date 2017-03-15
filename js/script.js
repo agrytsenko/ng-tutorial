@@ -4,6 +4,7 @@ var app = angular
     .module('demoApp', ['ngRoute'])
     .config(function ($routeProvider, $locationProvider) {
         $locationProvider.hashPrefix('');
+        $locationProvider.html5Mode(true);
         $routeProvider
             .when('/home', {
                 templateUrl: '/templates/home.html',
