@@ -2,41 +2,102 @@ body {
     font-family: Arial;
 }
 
-div {
-    font-size: xx-large;
-    width: 350px;
-    height: 400px;
+.outer {
+    margin: 20px 0 0 5px;
     border: 1px solid black;
-    padding: 10px;
-    overflow-y: scroll;
 }
 
-table {
+.header {
+    height: 80px;
+    line-height: 80px;
+    border-bottom: 1px solid white;
     border-collapse: collapse;
-    border: 1px solid black;
+    font-size: x-large;
 }
 
-th, tr, td {
-    padding: 5px;
-    border: 1px solid black;
+.footer {
+    height: 30px;
+    line-height: 30px;
+    border-top: 1px solid white;
+    border-collapse: collapse;
+    font-size: large;
 }
 
-td {text-align: left}
-
-.arrow-up {
-    width: 0;
-    height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-bottom: 10px solid black;
-    display: inline-block;
+.header, .footer {
+    text-align: center;
+    color: GrayText;
+    background-color: #bdbdbd;
 }
 
-.arrow-down {
-    width: 0;
-    height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 10px solid black;
-    display: inline-block;
+.content,
+.left-menu {
+    height: 80vh;
+    border-collapse: collapse;
 }
+
+.left-menu {
+    width: 30%;
+    max-width: 350px;
+    min-width: 150px;
+    border-right: 1px solid white;
+    float: left;
+    background-color: #d8d8d8;
+}
+
+.as-table {
+    display: table;
+}
+
+.as-table > .as-cell {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.menu-items {
+    margin-left: 30px;
+}
+
+.content {
+    width: auto;
+    border-left: 1px solid white;
+    background-color: #e6e6e6;
+}
+
+/*div {*/
+    /*font-size: xx-large;*/
+    /*width: 350px;*/
+    /*height: 400px;*/
+    /*border: 1px solid black;*/
+    /*padding: 10px;*/
+    /*overflow-y: scroll;*/
+/*}*/
+
+/*table {*/
+    /*border-collapse: collapse;*/
+    /*border: 1px solid black;*/
+/*}*/
+
+/*th, tr, td {*/
+    /*padding: 5px;*/
+    /*border: 1px solid black;*/
+/*}*/
+
+/*td {text-align: left}*/
+
+/*.arrow-up {*/
+    /*width: 0;*/
+    /*height: 0;*/
+    /*border-left: 5px solid transparent;*/
+    /*border-right: 5px solid transparent;*/
+    /*border-bottom: 10px solid black;*/
+    /*display: inline-block;*/
+/*}*/
+
+/*.arrow-down {*/
+    /*width: 0;*/
+    /*height: 0;*/
+    /*border-left: 5px solid transparent;*/
+    /*border-right: 5px solid transparent;*/
+    /*border-top: 10px solid black;*/
+    /*display: inline-block;*/
+/*}*/

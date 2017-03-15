@@ -3,24 +3,32 @@
 <head>
     <title>Ng-tests</title>
     <script src="/js/angular.js"></script>
+    <script src="/js/angular-route.js"></script>
     <script src="/js/script.js"></script>
     <script src="/js/filters.js"></script>
     <script src="/js/stringService.js"></script>
     <link href="/styles.css" rel="stylesheet" />
 </head>
 
-<body>
-    <div ng-controller="myController">
-        <span ng-repeat="country in countries">
-            <button ng-click="scrollTo(country.name)">{{ country.name }}</button>
-        </span>
-        <br /><br />
-        <fieldset ng-repeat="country in countries" id="{{ country.name }}">
-            <legend>{{ country.name }}</legend>
-            <ul>
-                <li ng-repeat="city in country.cities">{{ city.name }}</li>
-            </ul>
-        </fieldset>
+<body ng-controller="myController">
+<div class="outer">
+    <div class="header">
+        Website Header
     </div>
+    <div class="left-menu as-table">
+        <div class="as-cell">
+            <div class="menu-items">
+                <p><a href="">Home</a></p>
+                <p><a href="">Courses</a></p>
+                <p><a href="">Students</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="content"></div>
+    <div style="float: none"></div>
+    <div class="footer">
+        Website Footer
+    </div>
+</div>
 </body>
 </html>
