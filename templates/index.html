@@ -18,13 +18,15 @@
     <div class="left-menu as-table">
         <div class="as-cell">
             <div class="menu-items">
-                <p><a href="">Home</a></p>
-                <p><a href="">Courses</a></p>
-                <p><a href="">Students</a></p>
+                <p><a href="#home">Home</a></p>
+                <p><a href="#courses">Courses</a></p>
+                <p><a href="#students">Students</a></p>
             </div>
         </div>
     </div>
-    <div class="content"></div>
+    <div class="content">
+        <ng-view></ng-view>
+    </div>
     <div style="float: none"></div>
     <div class="footer">
         Website Footer

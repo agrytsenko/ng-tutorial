@@ -17,23 +17,11 @@ def index():
     return send_from_directory('templates', 'index.html')
 
 
-@route('/employee/')
-def employees():
-    ee = get_db().execute('select * from employees').fetchall()
+@route('/students/')
+def students():
+    ee = get_db().execute('select * from students').fetchall()
     res = map(dict, ee)
     return jsonify(res)
-
-
-@route('/country/')
-def country():
-    db = get_db()
-    countries = db.execute("select * from country").fetchall()
-    countries = map(dict, countries)
-    for c in countries:
-        q = "select * from city where country_id = ?"
-        tt = db.execute(q, str(c['id']))
-        c['cities'] = map(dict, tt)
-    return jsonify(countries)
 
 
 shared_files = {
