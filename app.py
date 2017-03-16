@@ -17,10 +17,17 @@ def index():
     return send_from_directory('templates', 'index.html')
 
 
-@route('/students/')
+@route('/api/students/')
 def students():
-    ee = get_db().execute('select * from students').fetchall()
-    res = map(dict, ee)
+    ss = get_db().execute('select id, name from students').fetchall()
+    res = map(dict, ss)
+    return jsonify(res)
+
+
+@route('/api/students/<int:obj_id>/')
+def get_student(obj_id):
+    s = get_db().execute('select * from students where id=?', (obj_id, )).fetchone()
+    res = dict(s)
     return jsonify(res)
 
 
